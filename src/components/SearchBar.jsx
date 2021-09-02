@@ -8,10 +8,8 @@ class SearchBar extends Component {
   handleChange = (e) => {
     const { value } = e.target;
     this.setState({ formValue: value });
+    this.props.filterTasks(value);
   };
-  componentDidUpdate() {
-    this.props.filterTasks(this.state.formValue);
-  }
   render() {
     return (
       <form action="submit">

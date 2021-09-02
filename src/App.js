@@ -11,18 +11,33 @@ class App extends React.Component {
           task: "Pass unit 3",
           id: 1,
           completed: false,
+          show: true,
         },
         {
           task: "Make a million a year",
           id: 2,
           completed: false,
+          show: true,
         },
       ],
     };
   }
 
   filterTasks = (str) => {
-    console.log(str);
+    console.log(str.length)
+    // hide tasks that do not contain the search substring, show those that do
+    // show all tasks if search bar is clear
+    const searchStr = new RegExp(str, "ig");
+    let searchList = [...this.state.todos];
+    searchList.map((todo) => {
+      if (todo.task.search(searchStr) !== -1 || str.length === 0) {
+        todo.show = true;
+      } else {
+        todo.show = false;
+      }
+      return todo;
+    });
+    this.setState({todos: searchList})
   };
 
   componentDidMount() {
@@ -39,7 +54,7 @@ class App extends React.Component {
   }
 
   addTodo = (task) => {
-    const newTodo = { task, id: Date.now(), completed: false };
+    const newTodo = { task, id: Date.now(), completed: false, show: true };
     this.setState({ todos: [...this.state.todos, newTodo] });
   };
 

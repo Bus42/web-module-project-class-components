@@ -20,12 +20,12 @@ class App extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // prior to mount, check if todos are in local storage, if so set app state to data store locally
     if (!localStorage.getItem("todos")) {
       localStorage.setItem("todos", JSON.stringify(this.state.todos));
     } else {
-      this.setState({ todos: localStorage.getItem("todos") });
+      this.setState({ todos: JSON.parse(localStorage.getItem("todos")) });
     }
   }
 

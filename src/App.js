@@ -1,30 +1,18 @@
 import React from "react";
 import SearchBar from "./components/SearchBar";
 import TodoList from "./components/TodoList";
+import MOCK_DATA from "./data/MOCK_DATA";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        {
-          task: "Pass unit 3",
-          id: 1,
-          completed: false,
-          show: true,
-        },
-        {
-          task: "Make a million a year",
-          id: 2,
-          completed: false,
-          show: true,
-        },
-      ],
+      todos: MOCK_DATA,
     };
   }
 
   filterTasks = (str) => {
-    console.log(str.length)
+    console.log(str.length);
     // hide tasks that do not contain the search substring, show those that do
     // show all tasks if search bar is clear
     const searchStr = new RegExp(str, "ig");
@@ -37,7 +25,7 @@ class App extends React.Component {
       }
       return todo;
     });
-    this.setState({todos: searchList})
+    this.setState({ todos: searchList });
   };
 
   componentDidMount() {

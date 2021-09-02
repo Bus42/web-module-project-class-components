@@ -6,6 +6,10 @@ class TodoList extends Component {
   render() {
     return (
       <div>
+        <TodoForm
+          addTodo={this.props.addTodo}
+          clearCompleted={this.props.clearCompleted}
+        />
         <ul>
           {this.props.todos.map((todo, index) => (
             <Todo
@@ -15,10 +19,6 @@ class TodoList extends Component {
             />
           ))}
         </ul>
-        <TodoForm
-          addTodo={this.props.addTodo}
-          clearCompleted={this.props.clearCompleted}
-        />
       </div>
     );
   }

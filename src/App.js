@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBar from "./components/SearchBar";
 import TodoList from "./components/TodoList";
 
 class App extends React.Component {
@@ -19,6 +20,10 @@ class App extends React.Component {
       ],
     };
   }
+
+  filterTasks = (str) => {
+    console.log(str);
+  };
 
   componentDidMount() {
     // prior to mount, check if todos are in local storage, if so set app state to data store locally
@@ -59,6 +64,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <SearchBar todos={this.state.todos} filterTasks={this.filterTasks} />
         <h2>Welcome to my Todo App!</h2>
         <TodoList
           todos={this.state.todos}
